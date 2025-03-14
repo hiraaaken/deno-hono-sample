@@ -1,0 +1,14 @@
+{
+	"tasks": {
+		"dev": "deno run --watch -A main.ts"
+	},
+	"imports": {
+		"@hono/hono": "jsr:@hono/hono@^4.7.4",
+		"@hono/zod-openapi": "npm:@hono/zod-openapi@^0.19.2",
+		"@std/assert": "jsr:@std/assert@1",
+		"drizzle-kit": "npm:drizzle-kit@^0.30.5",
+		"drizzle-orm": "npm:drizzle-orm@^0.40.0",
+		"postgres": "npm:postgres@^3.4.5",
+		"zod": "npm:zod@^3.24.2"
+	}
+}
