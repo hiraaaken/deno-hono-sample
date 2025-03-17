@@ -7,14 +7,14 @@
 - [Deno](https://deno.land/) - モダンなJavaScript/TypeScriptランタイム
 - [Hono](https://hono.dev/) v4.7.4 - 軽量で高速なWebフレームワーク
 - [DrizzleORM](https://orm.drizzle.team/) v0.40.0 - TypeScript ORMライブラリ
-- [PostgreSQL](https://www.postgresql.org/) - データベース
+- [PGlite](https://github.com/electric-sql/pglite) - ブラウザで動作する軽量なPostgreSQL互換データベース
 - [Zod](https://zod.dev/) v3.24.2 - TypeScriptファーストのスキーマ検証
 - [@hono/zod-openapi](https://github.com/honojs/middleware/tree/main/packages/zod-openapi) v0.19.2 - HonoのOpenAPI統合
 
 ## 前提条件
 
 - [Deno](https://deno.land/#installation)がインストールされていること
-- PostgreSQLがインストールされており、実行中であること
+- PGliteは自動的にセットアップされるため、追加のインストールは不要です
 
 ## セットアップ
 
@@ -32,12 +32,7 @@ cp .env.example .env
 
 必要な環境変数:
 - `PORT`: アプリケーションのポート番号（デフォルト: 8000）
-- `POSTGRES_HOST`: PostgreSQLホスト
-- `POSTGRES_PORT`: PostgreSQLポート
-- `POSTGRES_DB`: データベース名
-- `POSTGRES_USER`: データベースユーザー
-- `POSTGRES_PASSWORD`: データベースパスワード
-- `DATABASE_URL`: 自動生成される接続文字列
+- `DATABASE_URL`: PGliteの接続文字列（自動生成されます）
 
 3. データベースのセットアップ:
 ```bash
