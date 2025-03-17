@@ -1,6 +1,6 @@
 {
 	"tasks": {
-		"dev": "deno run --watch -A main.ts",
+		"dev": "deno run --watch -A src/index.ts",
 		"db-up": "deno run -A --node-modules-dir npm:drizzle-kit generate",
 		"db-migrate": "deno run -A src/lib/drizzle/migrate.ts"
 	},
