@@ -5,6 +5,9 @@ export type GetAllTasksUseCasePayload = {
 	title: string;
 	description: string;
 	dueDate?: Date;
+	completed: boolean;
+	createdAt: Date;
+	updatedAt: Date;
 };
 
 export class GetAllTasksUseCase {
@@ -18,6 +21,9 @@ export class GetAllTasksUseCase {
 			title: task.title,
 			description: task.description,
 			dueDate: task.dueDate,
+			completed: task.completed,
+			createdAt: task.createdAt,
+			updatedAt: task.updatedAt,
 		}));
 	}
 }
