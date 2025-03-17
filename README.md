@@ -39,6 +39,12 @@ cp .env.example .env
 - `POSTGRES_PASSWORD`: データベースパスワード
 - `DATABASE_URL`: 自動生成される接続文字列
 
+3. データベースのセットアップ:
+```bash
+# マイグレーションの実行
+deno task db:migrate
+```
+
 ## 開発
 
 開発サーバーの起動:
@@ -51,18 +57,41 @@ deno task dev
 
 ## APIエンドポイント
 
-- `GET /` - Hello Worldメッセージを返します
+### タスク管理
+- `GET /tasks` - すべてのタスクを取得します
+- `GET /tasks/:id` - 指定されたIDのタスクを取得します
+- `POST /tasks` - 新しいタスクを作成します
+  - リクエストボディ:
+    ```json
+    {
+      "title": "タスクのタイトル",
+      "description": "タスクの説明",
+      "dueDate": "2024-03-20T00:00:00Z" // オプション
+    }
+    ```
+- `PUT /tasks/:id` - タスクを更新します（実装中）
+- `DELETE /tasks/:id` - タスクを削除します（実装中）
 
 ## プロジェクト構造
 
 ```
 .
-├── deno.json          # Denoの設定ファイル
-├── deno.lock          # 依存関係のロックファイル
-├── main.ts            # アプリケーションのエントリーポイント
-├── .env.example       # 環境変数のテンプレート
-├── .gitignore         # Gitの除外設定ファイル
-└── README.md          # このファイル
+├── src/               # ソースコード
+│   ├── application/   # アプリケーション層（ユースケース）
+│   ├── domain/       # ドメイン層（エンティティ、値オブジェクト）
+│   ├── infrastructure/ # インフラストラクチャ層（データベース、外部サービス）
+│   ├── lib/          # 共通ライブラリ
+│   ├── presentation/ # プレゼンテーション層（コントローラー、ルーティング）
+│   └── index.ts      # アプリケーションのエントリーポイント
+├── db/               # データベース関連
+│   ├── data/        # データベースのデータ
+│   └── migrations/  # マイグレーションファイル
+├── deno.json        # Denoの設定ファイル
+├── deno.lock        # 依存関係のロックファイル
+├── drizzle.config.ts # DrizzleORMの設定ファイル
+├── .env.example     # 環境変数のテンプレート
+├── .gitignore       # Gitの除外設定ファイル
+└── README.md        # このファイル
 ```
 
 ## ライセンス
