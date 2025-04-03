@@ -6,6 +6,7 @@
     "jsr:@std/internal@^1.0.5": "1.0.5",
     "npm:@electric-sql/pglite@*": "0.2.17",
     "npm:@electric-sql/pglite@~0.2.17": "0.2.17",
+    "npm:@hono/swagger-ui@~0.5.1": "0.5.1_hono@4.7.4",
     "npm:@hono/zod-openapi@~0.19.2": "0.19.2_hono@4.7.4_zod@3.24.2",
     "npm:@types/node@*": "22.12.0",
     "npm:drizzle-kit@*": "0.30.5_esbuild@0.19.12",
@@ -190,6 +191,12 @@
     },
     "@esbuild/win32-x64@0.19.12": {
       "integrity": "sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA=="
+    },
+    "@hono/swagger-ui@0.5.1_hono@4.7.4": {
+      "integrity": "sha512-XpUCfszLJ9b1rtFdzqOSHfdg9pfBiC2J5piEjuSanYpDDTIwpMz0ciiv5N3WWUaQpz9fEgH8lttQqL41vIFuDA==",
+      "dependencies": [
+        "hono"
+      ]
     },
     "@hono/zod-openapi@0.19.2_hono@4.7.4_zod@3.24.2": {
       "integrity": "sha512-lkFa6wdQVgY7d7/m++Ixr3hvKCF5Y+zjTIPM37fex5ylCfX53A/W28gZRDuFZx3aR+noKob7lHfwdk9dURLzxw==",
@@ -378,6 +385,7 @@
       "jsr:@hono/hono@^4.7.4",
       "jsr:@std/assert@1",
       "npm:@electric-sql/pglite@~0.2.17",
+      "npm:@hono/swagger-ui@~0.5.1",
       "npm:@hono/zod-openapi@~0.19.2",
       "npm:drizzle-kit@~0.30.5",
       "npm:drizzle-orm@0.40",
