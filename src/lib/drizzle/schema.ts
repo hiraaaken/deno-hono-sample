@@ -1,5 +1,6 @@
 import {
   boolean,
+  integer,
   pgTable,
   text,
   timestamp,
@@ -13,6 +14,7 @@ export const tasks = pgTable("tasks", {
   description: text("description").notNull(),
   completed: boolean("completed").notNull().default(false),
   dueDate: timestamp("due_date"),
+  priority: integer("priority").notNull().default(3),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
