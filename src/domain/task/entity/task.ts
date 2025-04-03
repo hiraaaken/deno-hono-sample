@@ -1,82 +1,95 @@
+import { TaskId } from "../valueObject/taskId.ts";
+
 export class Task {
-	readonly #id: string;
-	#title: string;
-	#description: string;
-	#completed: boolean;
-	#dueDate?: Date;
-	#createdAt: Date;
-	#updatedAt: Date;
+  constructor(
+    private readonly _id: TaskId,
+    private readonly _title: string,
+    private readonly _description: string,
+    private readonly _completed: boolean,
+    private readonly _dueDate?: Date,
+    private readonly _priority: number = 3,
+    private readonly _createdAt: Date = new Date(),
+    private readonly _updatedAt: Date = new Date(),
+  ) {}
 
-	constructor(
-		props:
-			| {
-					title: string;
-					description: string;
-					dueDate?: Date;
-			  }
-			| {
-					id: string;
-					title: string;
-					description: string;
-					dueDate?: Date;
-					completed: boolean;
-					createdAt: Date;
-					updatedAt: Date;
-			  },
-	) {
-		if ("id" in props) {
-			this.#id = props.id;
-			this.#title = props.title;
-			this.#description = props.description;
-			this.#dueDate = props.dueDate;
-			this.#completed = props.completed;
-			this.#createdAt = props.createdAt;
-			this.#updatedAt = props.updatedAt;
-		} else {
-			this.#id = crypto.randomUUID();
-			this.#title = props.title;
-			this.#description = props.description;
-			this.#completed = false;
-			this.#createdAt = new Date();
-			this.#updatedAt = new Date();
-		}
-	}
+  static create(
+    title: string,
+    description: string,
+    dueDate?: Date,
+    priority: number = 3,
+  ): Task {
+    return new Task(
+      TaskId.generate(),
+      title,
+      description,
+      false,
+      dueDate,
+      priority,
+      new Date(),
+      new Date(),
+    );
+  }
 
-	// Getters
-	public get id(): string {
-		return this.#id;
-	}
+  complete(): Task {
+    return new Task(
+      this._id,
+      this._title,
+      this._description,
+      true,
+      this._dueDate,
+      this._priority,
+      this._createdAt,
+      new Date(),
+    );
+  }
 
-	public get title(): string {
-		return this.#title;
-	}
+  update(
+    title?: string,
+    description?: string,
+    dueDate?: Date,
+    priority?: number,
+  ): Task {
+    return new Task(
+      this._id,
+      title ?? this._title,
+      description ?? this._description,
+      this._completed,
+      dueDate ?? this._dueDate,
+      priority ?? this._priority,
+      this._createdAt,
+      new Date(),
+    );
+  }
 
-	public get description(): string {
-		return this.#description;
-	}
+  get id(): TaskId {
+    return this._id;
+  }
 
-	public get completed(): boolean {
-		return this.#completed;
-	}
+  get title(): string {
+    return this._title;
+  }
 
-	public get dueDate(): Date | undefined {
-		return this.#dueDate;
-	}
+  get description(): string {
+    return this._description;
+  }
 
-	public get createdAt(): Date {
-		return this.#createdAt;
-	}
+  get completed(): boolean {
+    return this._completed;
+  }
 
-	public get updatedAt(): Date {
-		return this.#updatedAt;
-	}
+  get dueDate(): Date | undefined {
+    return this._dueDate;
+  }
 
-	public equals(task: Task): boolean {
-		return this.id === task.id;
-	}
+  get priority(): number {
+    return this._priority;
+  }
 
-	complete(): void {
-		this.#completed = true;
-		this.#updatedAt = new Date();
-	}
+  get createdAt(): Date {
+    return this._createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this._updatedAt;
+  }
 }
